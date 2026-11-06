@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+
 ///////////////////////////////////////////////////////////
 /*									    //
 	Those definitions are used for tests,               //
@@ -20,7 +22,21 @@ enum DeviceType {PHONE, PC, LAPTOP, TABLET};		    //
 
 class Device
 {
+public:
+	std::string getOS() const;
+	bool isActive() const;
+	void activate();
+	void deactivate();
+	void init(const unsigned int id, const DeviceType type, const std::string os);
+	unsigned int getID() const;
+	DeviceType getType() const;
 
+
+private:
+	bool _isDevActive;
+	unsigned int _devId;
+	std::string _devOs;
+	DeviceType _devType;
 
 };
 
