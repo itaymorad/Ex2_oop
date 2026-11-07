@@ -50,7 +50,7 @@ void Profile::setStatus(const std::string new_status)
 /* This function is responsible for uploading new post */
 /* input: new post */
 /* output: none */
-void Profile::addPostsToProfilePage(const std::string post)
+void Profile::addPostToProfilePage(const std::string post)
 {
 	_userPage.addLineToPosts(post);
 }

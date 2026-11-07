@@ -15,7 +15,7 @@ public:
 	void clear();
 	User getOwner() const;	
 	void setStatus(const std::string new_status);
-	void addPostsToProfilePage(const std::string post);
+	void addPostToProfilePage(const std::string post);
 	void addFriend(User friend_to_add);
 	std::string getPage() const;
 	std::string getFriends() const;
