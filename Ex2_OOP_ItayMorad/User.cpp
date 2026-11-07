@@ -72,21 +72,7 @@ void User::addDevice(const Device newDevice)
 /* output: none */
 void User::clear()
 {
-	DeviceNode* currDev = new DeviceNode;
-	DeviceNode* temp = NULL;
-
-	currDev = _allDevs.get_first();
-	temp = currDev;
-
-	while (!currDev)
-	{
-		currDev = currDev->get_next();
-		delete temp;
-		temp = currDev;
-	}
-
-	currDev = NULL;
-	temp = NULL;
+	_allDevs.clear();
 }
 
 
@@ -96,5 +82,17 @@ void User::clear()
 const DevicesList& User::getDevices() const
 {
 	return _allDevs;
+}
+
+
+/* This function is responsible for creating  a new list of devices */
+/* input: id, username and age */
+/* output: none */
+void User::init(const unsigned int id, const std::string username, const unsigned int age)
+{
+	_allDevs.init();
+	_id = id;
+	_username = username;
+	_age = age;
 }
 
