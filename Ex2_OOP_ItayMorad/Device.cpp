@@ -63,6 +63,7 @@ DeviceType Device::getType() const
 /* output: none */
 void Device::init(const unsigned int id, const DeviceType type, const std::string os)
 {
+	activate();
 	_devId = id;
 	_devType = type;
 	_devOs = os;
