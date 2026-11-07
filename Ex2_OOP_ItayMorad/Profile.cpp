@@ -107,11 +107,12 @@ std::string Profile::getFriendsWithSameNameLength() const
 {
 	UserNode* currFriend = NULL;
 	std::string allFriends = "";
-	const unsigned int nameSize = currFriend->get_data().getUserName().length();
+	unsigned int nameSize = 0;
 
 	if (_friends.get_first())
 	{
 		currFriend = _friends.get_first();
+		nameSize = currFriend->get_data().getUserName().length();
 	}
 
 	while (currFriend)
@@ -173,7 +174,7 @@ void Profile::changeWordInStatus(const std::string word_to_replace, const std::s
 	std::string newStatus = "";
 	std::string checkForWord = "";
 
-	for (int i = 0; newStatus[i]; i++)
+	for (int i = 0; status[i]; i++)
 	{
 
 		if ((status[i] != ' ' && status[i] != '\t' && status[i] != '\n'))
