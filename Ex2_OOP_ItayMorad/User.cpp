@@ -41,7 +41,7 @@ bool User::checkIfDevicesAreOn() const
 	DeviceNode* currDev = new DeviceNode;
 	currDev = _allDevs.get_first();
 
-	while (currDev->get_next())
+	while (currDev)
 	{
 		if (!currDev->get_data().isActive())
 		{
