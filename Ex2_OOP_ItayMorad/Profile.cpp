@@ -52,7 +52,7 @@ void Profile::addPostToProfilePage(const std::string post)
 /* This function is responsible for adding new friend */
 /* input: new friend */
 /* output: none */
-void Profile::addFriend(User& friend_to_add)
+void Profile::addFriend(const User& friend_to_add)
 {
 	_friends.add(friend_to_add);
 }
