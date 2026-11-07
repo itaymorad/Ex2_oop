@@ -2,13 +2,6 @@
 #include "Profile.h"
 using namespace std;
 
-#define LOWEST_SMALL 97
-#define BIGGEST_SMALL 122
-
-#define LOWEST_BIG 65
-#define BIGGEST_BIG 90
-
-
 /* This function is responsible for initializing the profile */
 /* input: owner */
 /* output: none */
@@ -93,6 +86,8 @@ std::string Profile::getFriends() const
 		{
 			allFriends += currFriend->get_data().getUserName() + ',';
 		}
+
+		currFriend = currFriend->get_next();
 	}
 
 	return allFriends;
@@ -122,6 +117,8 @@ std::string Profile::getFriendsWithSameNameLength() const
 				allFriends += currFriend->get_data().getUserName() + ',';
 			}
 		}
+
+		currFriend = currFriend->get_next();
 	}
 
 	return allFriends;
