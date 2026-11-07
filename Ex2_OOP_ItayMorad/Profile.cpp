@@ -5,7 +5,7 @@ using namespace std;
 /* This function is responsible for initializing the profile */
 /* input: owner */
 /* output: none */
-void Profile::init(const User owner)
+void Profile::init(const User& owner)
 {
 	_owner = owner;
 	_userPage.init();
@@ -52,7 +52,7 @@ void Profile::addPostToProfilePage(const std::string post)
 /* This function is responsible for adding new friend */
 /* input: new friend */
 /* output: none */
-void Profile::addFriend(User friend_to_add)
+void Profile::addFriend(User& friend_to_add)
 {
 	_friends.add(friend_to_add);
 }
