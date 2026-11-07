@@ -43,7 +43,7 @@ void Device::deactivate()
 /* This function is responsible for getting the id of the device */
 /* input: none */
 /* output: the device id */
-unsigned int Device::getID() const;
+unsigned int Device::getID() const
 {
 	return _devId;
 }
@@ -52,7 +52,7 @@ unsigned int Device::getID() const;
 /* This function is responsible for getting the os type of the device */
 /* input: none */
 /* output: the device id */
-DeviceType Device::getType() const;
+DeviceType Device::getType() const
 {
 	return _devType;
 }
@@ -61,7 +61,7 @@ DeviceType Device::getType() const;
 /* This function is responsible for initializing the device */
 /* input: id, type and os */
 /* output: none */
-void Device::init(const unsigned int id, const DeviceType type, const std::string os);
+void Device::init(const unsigned int id, const DeviceType type, const std::string os)
 {
 	_devId = id;
 	_devType = type;
