@@ -73,8 +73,13 @@ std::string Profile::getPage() const
 /* output: string friends */
 std::string Profile::getFriends() const
 {
-	UserNode* currFriend = _friends.get_first();
+	UserNode* currFriend = NULL;
 	std::string allFriends = "";
+
+	if (_friends.get_first())
+	{
+		currFriend = _friends.get_first();
+	}
 	
 	while (currFriend)
 	{
@@ -100,9 +105,14 @@ std::string Profile::getFriends() const
 /* output: none */
 std::string Profile::getFriendsWithSameNameLength() const
 {
-	UserNode* currFriend = _friends.get_first();
+	UserNode* currFriend = NULL;
 	std::string allFriends = "";
 	const unsigned int nameSize = currFriend->get_data().getUserName().length();
+
+	if (_friends.get_first())
+	{
+		currFriend = _friends.get_first();
+	}
 
 	while (currFriend)
 	{
@@ -135,7 +145,7 @@ void Profile::changeAllWordsInStatus(const std::string word)
 	std::string newStatus = "";
 	bool onWord = (status[0] != ' ' && status[0] != '\t' && status[0] != '\n');
 
-	for (int i = 0; newStatus[i]; i++)
+	for (int i = 0; status[i]; i++)
 	{
 		if ((status[i] != ' ' && status[i] != '\t' && status[i] != '\n') && onWord)
 		{

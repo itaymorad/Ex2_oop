@@ -56,6 +56,6 @@ void Page::setStatus(const std::string status)
 /* output: none */
 void Page::addLineToPosts(const std::string new_line)
 {
-	_posts = new_line + '\n';
+	_posts += new_line + '\n';
 }
 
