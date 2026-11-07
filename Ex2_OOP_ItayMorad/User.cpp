@@ -38,8 +38,7 @@ unsigned int User::getAge() const
 bool User::checkIfDevicesAreOn() const
 {
 	bool isDeviceAct = true;
-	DeviceNode* currDev = new DeviceNode;
-	currDev = _allDevs.get_first();
+	DeviceNode* currDev = _allDevs.get_first();
 
 	while (currDev)
 	{
@@ -51,8 +50,6 @@ bool User::checkIfDevicesAreOn() const
 
 		currDev = currDev->get_next();
 	}
-
-	delete currDev;
 
 	return isDeviceAct;
 }
