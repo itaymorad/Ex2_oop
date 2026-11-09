@@ -1,12 +1,3 @@
-The segmentation fault is happening immediately when you try to add friends because you never initialized the `_friends` list inside your `init()` function.
-
-Because `UserList` relies on an `init()` method instead of a standard C++ constructor, `_friends` starts with unallocated, garbage memory.When the test loop calls `addFriend` and attempts to insert a node, it tries to access a garbage pointer and instantly crashes with Exit 139.
-
-Additionally, your `getFriends` functions have a string formatting bug.By checking `!currFriend->get_next()`, you leave a trailing comma(like `Alice,Bob, `) if the last friends in the list don't match the name length. You also mistakenly checked the name length against the *first friend in the list*, rather than the *owner of the profile*.
-
-	Here is the fully repaired `Profile.cpp` that adds the missing `_friends.init()`, cleans up the owner to stop the leak, and uses a much safer comma - checking logic that perfectly satisfies your constraint of using only a single `return` statement at the end of the functions.
-
-	```cpp
 #include <string>
 #include "Profile.h"
 	using namespace std;
@@ -206,5 +197,3 @@ void Profile::changeWordInStatus(const std::string word_to_replace, const std::s
 
 	_userPage.setStatus(newStatus);
 }
-
-```
