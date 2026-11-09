@@ -33,7 +33,7 @@ void Profile::clear()
 /* This function is responsible for getting the owner */
 /* input: none */
 /* output: owner */
-User Profile::getOwner() const
+const User& Profile::getOwner() const
 {
 	return _owner;
 }
