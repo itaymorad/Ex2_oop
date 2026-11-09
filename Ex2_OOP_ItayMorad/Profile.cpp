@@ -7,7 +7,15 @@ using namespace std;
 /* output: none */
 void Profile::init(const User& owner)
 {
-	_owner = owner;
+	_owner.init(owner.getID(), owner.getUserName(), owner.getAge());
+
+	DeviceNode* curr = owner.getDevices().get_first();
+	while (curr)
+	{
+		_owner.addDevice(curr->get_data());
+		curr = curr->get_next();
+	}
+
 	_userPage.init();
 }
 
@@ -174,25 +182,23 @@ void Profile::changeWordInStatus(const std::string word_to_replace, const std::s
 	std::string newStatus = "";
 	std::string checkForWord = "";
 
-	for (int i = 0; status[i]; i++)
+	for (int i = 0; i < status.length(); i++)
 	{
-
-		if ((status[i] != ' ' && status[i] != '\t' && status[i] != '\n'))
+		if (status[i] == ' ' || status[i] == '\t' || status[i] == '\n')
 		{
-			checkForWord += status[i];
-			continue;
-		}
-
-		if (checkForWord == word_to_replace)
-		{
-			checkForWord = new_word;
+			newStatus += status[i]; 
+			onWord = false;
 		}
 		else
 		{
-			newStatus += checkForWord + status;
-			checkForWord = "";
+			if (!onWord) 
+			{
+				newStatus += word; 
+				onWord = true;
+			}
+			
 		}
 	}
-
 	_userPage.setStatus(newStatus);
+}
 }
