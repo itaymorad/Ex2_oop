@@ -24,6 +24,7 @@ void Profile::init(const User& owner)
 /* output: none */
 void Profile::clear()
 {
+	_owner.clear();
 	_userPage.clearPage();
 	_friends.clear();
 }
