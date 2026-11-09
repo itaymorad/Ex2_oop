@@ -157,35 +157,7 @@ std::string Profile::getFriendsWithSameNameLength() const
 /* This function is responsible for changing all the words to a specific word in the status */
 /* input: word */
 /* output:none */
-
-void Profile::changeAllWordsInStatus(const std::string word) 
-{
-	const std::string status = _userPage.getStatus();
-	std::string newStatus = "";
-	bool onWord = (status[0] != ' ' && status[0] != '\t' && status[0] != '\n');
-
-	for (int i = 0; status[i]; i++)
-	{
-		if ((status[i] != ' ' && status[i] != '\t' && status[i] != '\n') && onWord)
-		{
-			onWord = false;
-			newStatus += word;
-		}
-		else
-		{
-			newStatus += status[i];
-			onWord = true;
-		}
-	}
-
-	_userPage.setStatus(newStatus);
-}
-
-
-/* This function is responsible for replacing one word with another */
-/* input: word to replace and new word */
-/* output: none */
-void Profile::changeWordInStatus(const std::string word_to_replace, const std::string new_word)
+void Profile::changeAllWordsInStatus(const std::string word)
 {
 	const std::string status = _userPage.getStatus();
 	std::string newStatus = "";
@@ -195,18 +167,60 @@ void Profile::changeWordInStatus(const std::string word_to_replace, const std::s
 	{
 		if (status[i] == ' ' || status[i] == '\t' || status[i] == '\n')
 		{
-			newStatus += status[i];
+			newStatus += status[i]; 
 			onWord = false;
 		}
 		else
 		{
-			if (!onWord) 
+			if (!onWord)
 			{
-				newStatus += new_word;
+				newStatus += word; 
 				onWord = true;
 			}
-			
 		}
 	}
+	_userPage.setStatus(newStatus);
+}
+
+/* This function is responsible for replacing one word with another */
+/* input: word to replace and new word */
+/* output: none */
+void Profile::changeWordInStatus(const std::string word_to_replace, const std::string new_word)
+{
+	const std::string status = _userPage.getStatus();
+	std::string newStatus = "";
+	std::string currentWord = "";
+
+	for (int i = 0; i < status.length(); i++)
+	{
+		if (status[i] != ' ' && status[i] != '\t' && status[i] != '\n')
+		{
+			currentWord += status[i];
+		}
+		else
+		{
+			if (currentWord == word_to_replace)
+			{
+				newStatus += new_word;
+			}
+			else
+			{
+				newStatus += currentWord;
+			}
+
+			newStatus += status[i];
+			currentWord = ""; 
+		}
+	}
+
+	if (currentWord == word_to_replace)
+	{
+		newStatus += new_word;
+	}
+	else
+	{
+		newStatus += currentWord;
+	}
+
 	_userPage.setStatus(newStatus);
 }
