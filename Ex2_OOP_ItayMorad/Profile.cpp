@@ -178,27 +178,25 @@ void Profile::changeAllWordsInStatus(const std::string word)
 void Profile::changeWordInStatus(const std::string word_to_replace, const std::string new_word)
 {
 	const std::string status = _userPage.getStatus();
-
 	std::string newStatus = "";
-	std::string checkForWord = "";
+	bool onWord = false;
 
 	for (int i = 0; i < status.length(); i++)
 	{
 		if (status[i] == ' ' || status[i] == '\t' || status[i] == '\n')
 		{
-			newStatus += status[i]; 
+			newStatus += status[i];
 			onWord = false;
 		}
 		else
 		{
 			if (!onWord) 
 			{
-				newStatus += word; 
+				newStatus += new_word;
 				onWord = true;
 			}
 			
 		}
 	}
 	_userPage.setStatus(newStatus);
-}
 }
