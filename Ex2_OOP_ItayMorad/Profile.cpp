@@ -7,7 +7,15 @@ using namespace std;
 /* output: none */
 void Profile::init(const User& owner)
 {
-	_owner = owner;
+	_owner.init(owner.getID(), owner.getUserName(), owner.getAge());
+
+	DeviceNode* curr = owner.getDevices().get_first();
+	while (curr)
+	{
+		_owner.addDevice(curr->get_data());
+		curr = curr->get_next();
+	}
+
 	_userPage.init();
 }
 
@@ -49,7 +57,10 @@ void Profile::addPostToProfilePage(const std::string post)
 /* output: none */
 void Profile::addFriend(const User& friend_to_add)
 {
-	_friends.add(friend_to_add);
+	User friend_info;
+	friend_info.init(friend_to_add.getID(), friend_to_add.getUserName(), friend_to_add.getAge());
+
+	_friends.add(friend_info);
 }
 
 /* This function is responsible for returning the page */
