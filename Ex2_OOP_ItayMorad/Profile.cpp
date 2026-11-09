@@ -62,7 +62,17 @@ void Profile::addPostToProfilePage(const std::string post)
 /* output: none */
 void Profile::addFriend(const User& friend_to_add)
 {
-	_friends.add(friend_to_add);
+	User safeCopy;
+	safeCopy.init(friend_to_add.getID(), friend_to_add.getUserName(), friend_to_add.getAge());
+
+	DeviceNode* curr = friend_to_add.getDevices().get_first();
+	while (curr)
+	{
+		safeCopy.addDevice(curr->get_data());
+		curr = curr->get_next();
+	}
+
+	_friends.add(safeCopy);
 }
 
 
