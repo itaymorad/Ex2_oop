@@ -8,7 +8,7 @@
 class SocialNetwork
 {
 public:
-	void init(const std::string const networkName, const int minAge);
+	void init(const std::string networkName, const int minAge);
 	void clear();
 	std::string getNetworkName() const;
 	int getMinAge() const;
