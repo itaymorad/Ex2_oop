@@ -52,13 +52,9 @@ bool SocialNetwork::addProfile(const Profile& profile_to_add)
 {
 	bool worked = false;
 
-	// Check if the user meets the network's minimum age requirement
 	if (profile_to_add.getOwner().getAge() >= _minAge)
 	{
-		Profile profile_info;
-		profile_info.init(profile_to_add.getOwner());
-
-		if (_profiles.add(profile_info))
+		if (_profiles.add(profile_to_add))
 		{
 			worked = true;
 		}
