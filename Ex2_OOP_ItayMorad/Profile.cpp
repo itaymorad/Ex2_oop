@@ -1,6 +1,6 @@
 #include <string>
 #include "Profile.h"
-	using namespace std;
+using namespace std;
 
 /* This function is responsible for initializing the profile */
 /* input: owner */
@@ -17,7 +17,7 @@ void Profile::init(const User & owner)
 	}
 
 	_userPage.init();
-	_friends.init(); // CRITICAL FIX: Initializes the list so addFriend does not segfault
+	_friends.init();
 }
 
 /* This function is responsible for clearing the profile */
@@ -25,7 +25,7 @@ void Profile::init(const User & owner)
 /* output: none */
 void Profile::clear()
 {
-	_owner.clear(); // CRITICAL FIX: Clears the deep-copied devices to stop the memory leak
+	_owner.clear();
 	_userPage.clearPage();
 	_friends.clear();
 }
