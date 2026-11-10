@@ -72,21 +72,20 @@ std::string SocialNetwork::getWindowsDevices() const
 
 	while (currProfile)
 	{
-		User user = currProfile->get_data().getOwner();
-		DeviceNode* currDevice = user.getDevices().get_first();
+		DeviceNode* currDevice = currProfile->get_data().getOwner().getDevices().get_first();
 
 		while (currDevice)
 		{
-			Device device = currDevice->get_data();
-			std::string os = device.getOS();
+			std::string os = currDevice->get_data().getOS();
+			bool isActive = currDevice->get_data().isActive();
 
-			if (os == WINDOWS11 || os == WINDOWS10 || os == WINDOWS7)
+			if (isActive && (os == "Windows11" || os == "Windows10" || os == "Windows7"))
 			{
 				if (winDevices != "")
 				{
 					winDevices += ", ";
 				}
-				winDevices += "[" + std::to_string(device.getID()) + ", " + os + "]";
+				winDevices += "[" + std::to_string(currDevice->get_data().getID()) + ", " + os + "]";
 			}
 
 			currDevice = currDevice->get_next();
