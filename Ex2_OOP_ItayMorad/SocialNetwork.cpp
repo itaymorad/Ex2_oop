@@ -43,24 +43,29 @@ int SocialNetwork::getMinAge() const
 }
 
 
-/* This function is responsible for adding a profile */
-/* input: new profile */
-/* output: success/not */
+
+
+/* This function is responsible for returning a list of connected windows devices */
+/* input: none */
+/* output: a list of connected windows devices */
 bool SocialNetwork::addProfile(const Profile& profile_to_add)
 {
 	bool worked = false;
 
-	Profile profile_info;
-	profile_info.init(profile_to_add.getOwner());
-
-	if (_profiles.add(profile_info))
+	// Check if the user meets the network's minimum age requirement
+	if (profile_to_add.getOwner().getAge() >= _minAge)
 	{
-		worked = true;
+		Profile profile_info;
+		profile_info.init(profile_to_add.getOwner());
+
+		if (_profiles.add(profile_info))
+		{
+			worked = true;
+		}
 	}
 
 	return worked;
 }
-
 
 /* This function is responsible for returning a list of connected windows devices */
 /* input: none */
@@ -69,6 +74,7 @@ std::string SocialNetwork::getWindowsDevices() const
 {
 	ProfileNode* currProfile = _profiles.get_first();
 	std::string winDevices = "";
+	std::string oneDevice = "";
 
 	while (currProfile)
 	{
@@ -77,15 +83,19 @@ std::string SocialNetwork::getWindowsDevices() const
 		while (currDevice)
 		{
 			std::string os = currDevice->get_data().getOS();
-			bool isActive = currDevice->get_data().isActive();
 
-			if (isActive && (os == "Windows11" || os == "Windows10" || os == "Windows7"))
+			if (os == "Windows11" || os == "Windows10" || os == "Windows7")
 			{
-				if (winDevices != "")
+				oneDevice = "[" + std::to_string(currDevice->get_data().getID()) + ", " + os + "]";
+
+				if (winDevices == "")
 				{
-					winDevices += ", ";
+					winDevices += oneDevice;
 				}
-				winDevices += "[" + std::to_string(currDevice->get_data().getID()) + ", " + os + "]";
+				else
+				{
+					winDevices += ", " + oneDevice;
+				}
 			}
 
 			currDevice = currDevice->get_next();
